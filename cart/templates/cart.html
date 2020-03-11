@@ -10,30 +10,33 @@
             
             <div class="card-img-top" style="background-image: url('{{ MEDIA_URL }}{{ item.product.image }}')"></div>
             
-            <div class="caption">
+            <figure class="figure">
                 <h3>{{ item.product.name }}</h3>
                 <p class="product-description">{{ item.product.description }}</p>
                 <p>{{ item.product.price }}</p>
-                <p>
-                    
-                    <form class="form-inline" method="post" action="{% url 'adjust_cart' item.id %}">
+                <p> 
+                    <form class="form-inline" method="POST" action="{% url 'adjust_cart' item.id %}">
                         {% csrf_token %}
                         <div class="form-group">
                             <label for="exampleInputAmount" class="sr-only">New Qty</label>
-                            <div class="input-group">
-                                <div class="input-group-addon">Qty</div>
+                            <div class="input-group mb-2">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">Qty</span>
+                                </div>
                                 <input name="quantity" type="number" min="0" max="999" class="form-control">
-                                <div class="input-group-addon">{{item.quantity}}</div>
+                                <div class="input-group-append">
+                                    <span class="input-group-text">{{item.quantity}}</span>
+                                </div>
                             </div>
                         </div>
                         <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span>Amend</button>
                     </form>
                 </p>
-            </div>
+            </figure>
         </div>
     {% endfor %}
 </div>
-<div class="row">
+<div class="flex-row">
     <p>Total</p>
     <p><span class="glyphicon glyphicon-euro" aria-hidden="true"></span>{{ total }}</p>
     <a href="/" class="btn btn-success" role="button"><span class="glyphicon glyphicon-ok-sign" aria-hidden="true"></span>Checkout</a>
