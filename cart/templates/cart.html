@@ -4,15 +4,15 @@
 {% load bootstrap_tags %}
 
 {% block content %}
-<div class="flex-row p-2">
+<div class="row flex-row p-2">
     {% for item in cart_items %}
         <div class="col-xs-10 col-xs-offset-1 col-sm-offset-0 col-sm-6 col-md-4 card">
             
-            <div class="card-img-top" style="background-image: url('{{ MEDIA_URL }}{{ item.product.image }}')"></div>
+            <div class="product card-img-top" style="background-image: url('{{ MEDIA_URL }}{{ item.product.image }}')"></div>
             
             <figure class="figure">
                 <h3>{{ item.product.name }}</h3>
-                <p class="product-description">{{ item.product.description }}</p>
+                <p class="card-text">{{ item.product.description }}</p>
                 <p>{{ item.product.price }}</p>
                 <p> 
                     <form class="form-inline" method="POST" action="{% url 'adjust_cart' item.id %}">

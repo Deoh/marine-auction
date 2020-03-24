@@ -4,3 +4,4 @@
 __pycahce__/
 .coverage
 htmlcov/
+env.py
